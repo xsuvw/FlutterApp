@@ -8,7 +8,7 @@ void main() {
   ));
 }
 
-class CardLayout extends StatelessWidget {
+class CardLayout extends StatelessWidget {                  // Alert Dialog widget
   @override
   Widget build(BuildContext context) {
     return Scaffold(
