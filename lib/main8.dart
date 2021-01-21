@@ -4,7 +4,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 void main() {
   runApp(MaterialApp(
-    debugShowCheckedModeBanner: false,                      //signup page
+                                                      //login page
+    debugShowCheckedModeBanner: false,
     home: HomeScreen(),
   ));
 }
@@ -47,7 +48,7 @@ class HomePageState extends State<HomeScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  'Sign Up',
+                  'Log in',
                   textAlign: TextAlign.left,
                   style: TextStyle(
                     color: Colors.white,
@@ -59,7 +60,7 @@ class HomePageState extends State<HomeScreen> {
                   padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
                 ),
                 Text(
-                  'Enter your email address to register on Koyn.',
+                  'Enter your login details to access your account.',
                   textAlign: TextAlign.left,
                   style: TextStyle(color: Colors.white, fontSize: 15),
                 )
@@ -107,34 +108,6 @@ class HomePageState extends State<HomeScreen> {
                     color: Colors.grey[350],
                   ),
                   child: TextFormField(
-                    obscureText: false,
-                    decoration: InputDecoration(
-                      disabledBorder: InputBorder.none,
-                      border: InputBorder.none,
-                      contentPadding: EdgeInsets.all(10),
-                      hintText: 'Email',
-                    ),
-                    validator: (pass) {
-                      {
-                        Pattern pattern =
-                            r'((?=.*?[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,})';
-                        RegExp regex = new RegExp(pattern);
-                        if (!regex.hasMatch(pass)) {
-                          return "";
-                        } else
-                          return null;
-                      }
-                    },
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.fromLTRB(20, 15, 20, 0),
-                  height: 60,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Colors.grey[350],
-                  ),
-                  child: TextFormField(
                     obscureText: true,
                     decoration: InputDecoration(
                       disabledBorder: InputBorder.none,
@@ -156,121 +129,81 @@ class HomePageState extends State<HomeScreen> {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.fromLTRB(35, 6, 45, 14),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      Text("a \n Lowercase", textAlign: TextAlign.center),
-                      Text("A \n Uppercase", textAlign: TextAlign.center),
-                      Text("# \n Special", textAlign: TextAlign.center),
-                      Text("6+ \n Characters", textAlign: TextAlign.center),
-                    ],
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.fromLTRB(20, 5, 20, 0),
-                  height: 60,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Colors.grey[350],
-                  ),
-                  child: TextFormField(
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      disabledBorder: InputBorder.none,
-                      border: InputBorder.none,
-                      contentPadding: EdgeInsets.all(10),
-                      hintText: 'Confirm Password',
-                    ),
-                    validator: (pass) {
-                      {
-                        Pattern pattern =
-                            r'((?=.*?[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,})';
-                        RegExp regex = new RegExp(pattern);
-                        if (!regex.hasMatch(pass)) {
-                          return "";
-                        } else
-                          return null;
+                  margin: EdgeInsets.fromLTRB(20, 70, 20, 0),
+                  width: MediaQuery.of(context).size.width,
+                  child: RaisedButton(
+                    onPressed: () {
+                      if (!formKey.currentState.validate()) {
+                        showToast("Invalid phone number or Password");
                       }
                     },
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    padding: EdgeInsets.fromLTRB(137, 17, 143, 14),
+                    color: Colors.blueGrey[700],
+                    child: Text(
+                      "Login",
+                      style: TextStyle(color: Colors.white, fontSize: 20),
+                    ),
+                    elevation: 10,
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.fromLTRB(78, 40, 82, 10),
+                  margin: EdgeInsets.fromLTRB(0, 35, 0, 0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Container(
-                          margin: EdgeInsets.fromLTRB(0, 0, 0, 5),
-                          child: RichText(
-                            textAlign: TextAlign.center,
-                            text: TextSpan(
-                                style: TextStyle(
-                                    fontSize: 15,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold),
-                                children: <TextSpan>[
-                                  TextSpan(
-                                      text:
-                                          'Tapping on sign up, I agree to all '),
-                                  TextSpan(
-                                      text: 'Terms and Conditions',
-                                      style: TextStyle(
-                                          color: Colors.blueGrey[700],
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.bold))
-                                ]),
-                          ),
+                      Container(
+                        child: Text(
+                          "Forgot password?",
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold),
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.fromLTRB(20, 7, 20, 0),
-                        width: MediaQuery.of(context).size.width,
-                        child: RaisedButton(
-                          onPressed: () {
-                            if (!formKey.currentState.validate()) {
-                              showToast("Invalid phone number or Password");
-                            }
-                          },
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          padding: EdgeInsets.fromLTRB(90, 17, 90, 14),
-                          color: Colors.blueGrey[700],
-                          child: Text(
-                            "Sign Up",
-                            style: TextStyle(color: Colors.white, fontSize: 15),
-                          ),
-                          elevation: 10,
+                        child: Text(
+                          "or",
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold),
                         ),
+                        margin: EdgeInsets.fromLTRB(0, 12, 0, 0),
+                      ),
+                      Container(
+                        child: Text(
+                          "Forgot email?",
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        margin: EdgeInsets.fromLTRB(0, 12, 0, 100),
                       ),
                       Align(
                         alignment: Alignment.bottomCenter,
                         child: Container(
-                          margin: EdgeInsets.fromLTRB(0, 50, 0, 5),
+                          margin: EdgeInsets.fromLTRB(0, 0, 0, 30),
                           child: RichText(
-                            textAlign: TextAlign.center,
                             text: TextSpan(
                                 style: TextStyle(
                                     fontSize: 15,
                                     color: Colors.black,
                                     fontWeight: FontWeight.bold),
                                 children: <TextSpan>[
-                                  TextSpan(text: 'Already have an account?'),
+                                  TextSpan(text: 'Here for the first time?'),
                                   TextSpan(
-                                      text: ' Log In',
+                                      text: ' Sign Up',
                                       style: TextStyle(
                                           color: Colors.blueGrey[700],
-                                          fontSize: 15,
                                           fontWeight: FontWeight.bold))
                                 ]),
                           ),
                         ),
-                      ),
+                      )
                     ],
                   ),
                 )
